@@ -64,10 +64,12 @@ public class WorkoutAppController {
     		
     	} else {
     		// Any returning users already in the ChoiceBox
-    		applicationStage.setTitle("Joe");
+    		
+    		// Title changes based on the user that is entered
+    		applicationStage.setTitle(user);
     		
     		VBox returnUserContainer = new VBox();
-    		Label returnUserLabel = new Label("Welcome Joe"); // this will change will change based on what user is chosen
+    		Label returnUserLabel = new Label("Welcome " + user + " !"); // this will change will change based on what user is chosen
     		Label activityLabel = new Label("How were you active today?");
     		
     		HBox workoutContainer = new HBox();
