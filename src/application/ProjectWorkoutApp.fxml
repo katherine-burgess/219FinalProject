@@ -39,6 +39,7 @@
             	<items>
             		<FXCollections fx:factory="observableArrayList">
             			<String fx:value="Add a User" />
+            			<String fx:value="Joe" />
             		</FXCollections>
             	</items>
                <VBox.margin>
