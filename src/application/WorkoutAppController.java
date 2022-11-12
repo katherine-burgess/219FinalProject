@@ -11,7 +11,10 @@ public class WorkoutAppController {
 
     @FXML
     void chooseUser(ActionEvent event) {
-
+    	// Get the input from the user 
+    	String user = chooseUserChoiceBox.getValue();
+    	
+    	System.out.println("user chosen:" + user);
     }
 
 }
