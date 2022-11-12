@@ -13,19 +13,26 @@ import javafx.stage.Stage;
 public class WorkoutAppController {
 	Stage applicationStage;
 	
+	@FXML
+	private Label inspirationQuoteLabel;
+	
     @FXML
     private ChoiceBox<String> chooseUserChoiceBox;
 
     
+    // Take user input and add to ChoiceBox
     void addNewUser(Scene mainScene) {
     	applicationStage.setScene(mainScene);
+    	
+    	// Adding the new user to the ChoiceBox	
+    	// chooseUserChoiceBox.getItems().add("placeholder");       // https://jenkov.com/tutorials/javafx/choicebox.html
     }
     
-    /** 
-     * This method will
-     * 
-     * @param event 
-     */
+   // Returning user main interface 
+   void returningUser(Scene mainScene) {
+	   
+   }
+    
     @FXML
     void chooseUser(ActionEvent event) {
     	Scene mainScene = applicationStage.getScene();   
@@ -49,6 +56,11 @@ public class WorkoutAppController {
     		applicationStage.setScene(addUserScene); // places the new scene on the stage
     		
     	} else {
+    		applicationStage.setTitle("Joe");
+    		
+    		HBox returnUserContainer = new HBox();
+    		Label returnUserLabel = new Label("Welcome Joe"); // this will change will change based on what user is chosen
+    		
     		
     		Scene returnUserScene = new Scene(new Label("Placeholder. Add widgets later"));
     		applicationStage.setScene(returnUserScene);
