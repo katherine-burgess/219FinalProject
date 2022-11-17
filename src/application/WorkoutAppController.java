@@ -83,6 +83,12 @@ public class WorkoutAppController {
 	  ;
    }
    
+   /**
+    * 
+    * 
+    * @param event
+    * @param returnUserScene
+    */
    void userGoalLog(ActionEvent event, Scene returnUserScene) {
 	   
 	   applicationStage.setTitle("Log" + " " + chooseUserChoiceBox.getValue() + " " + "Goals");
@@ -92,19 +98,45 @@ public class WorkoutAppController {
 	  
 	   // User can enter goals for target body weight, duration, personal weight record for upper and lower body
 	   
+	   // Container for entering duration target goals 
 	   HBox durationGoalContainer = new HBox();
 	   Label durationGoalLabel = new Label("Workout Duration Goal");
 	   HBox.setMargin(durationGoalLabel, new Insets(10,10,10,10));
 	   TextField durationTextfield = new TextField();
+	   HBox.setMargin(durationTextfield, new Insets(10,10,10,10));
 	   Label durationMinLabel = new Label("minutes");
 	   HBox.setMargin(durationMinLabel, new Insets(10,10,10,10));
 	  
 	   durationGoalContainer.getChildren().addAll(durationGoalLabel, durationTextfield, durationMinLabel);
 	   
-	  
-	  
+	   // Container for entering target body weight 
+	   HBox targetWeightContainer = new HBox();
+	   Label targetWeightLabel = new Label("Target Weight Goal");
+	   HBox.setMargin(targetWeightLabel, new Insets(10,10,10,10));
+	   TextField targetWeightTextfield = new TextField();
+	   HBox.setMargin(targetWeightTextfield, new Insets(10,10,10,10));
+	   targetWeightContainer.getChildren().addAll(targetWeightLabel, targetWeightTextfield);
+	   
+	   
+	   // Container for entering personal weight record upper body
+	   HBox upperBodyPRContainer = new HBox();
+	   Label upperBodyPRLabel = new Label("Upper Body PR Goal");
+	   HBox.setMargin(upperBodyPRLabel, new Insets(10,10,10,10));
+	   TextField upperBodyPRTextfield = new TextField();
+	   HBox.setMargin(upperBodyPRTextfield, new Insets(10,10,10,10));
+	   upperBodyPRContainer.getChildren().addAll(upperBodyPRLabel, upperBodyPRTextfield);
+	   
+	   // Container for entering personal weight record lower body 
+	   HBox lowerBodyPRContainer = new HBox();
+	   Label lowerBodyPRLabel = new Label("Lower Body PR Goal");
+	   HBox.setMargin(lowerBodyPRLabel, new Insets(10,10,10,10));
+	   TextField lowerBodyPRTextfield = new TextField();
+	   HBox.setMargin(lowerBodyPRTextfield, new Insets(10,10,10,10));
+	   lowerBodyPRContainer.getChildren().addAll(lowerBodyPRLabel, lowerBodyPRTextfield);
+	   
 	   Button submitGoals = new Button("Done");
-	   workoutGoalsContainer.getChildren().addAll(durationGoalContainer, submitGoals);
+	   VBox.setMargin(submitGoals, new Insets(10,10,10,10));
+	   workoutGoalsContainer.getChildren().addAll(durationGoalContainer, targetWeightContainer, upperBodyPRContainer, lowerBodyPRContainer, submitGoals);
 	   submitGoals.setOnAction(doneEvent ->  applicationStage.setScene(returnUserScene));
 	  
 	   Scene workoutGoalScene = new Scene(workoutGoalsContainer);  
@@ -149,10 +181,7 @@ public class WorkoutAppController {
     		
     	} else {
     		
-//    		Group root = new Group();
-//    		Scene workoutScene = new Scene(root, 400, 400);
-    		// Any returning users already in the ChoiceBox
-    		//Scene logWorkoutScene = new applicationStage.getScene();
+    		// returning the user welcome page
     		VBox returnUserContainer = new VBox();
     		
     		returnUserContainer.setStyle("-fx-background-color: gainsboro;");
@@ -162,12 +191,14 @@ public class WorkoutAppController {
     		
     		Scene returnUserScene = new Scene(returnUserContainer);    		
     		
+    		
     		Label returnUserLabel = new Label("Welcome " + user + " !"); // this will change will change based on what user is chosen
     		VBox.setMargin(returnUserLabel, new Insets(10,10,10,10));
     		Label activityLabel = new Label("How were you active today?");
     		VBox.setMargin(activityLabel, new Insets(10,10,10,10));
-    		HBox workoutContainer = new HBox();
     		
+    		// Container for logging workout
+    		HBox workoutContainer = new HBox();
     		Label logWorkoutLabel = new Label("Log your new workout");
     		HBox.setMargin(logWorkoutLabel, new Insets(10,10,10,10));
     		Button doneButton = new Button("Enter Here");
@@ -176,6 +207,7 @@ public class WorkoutAppController {
     		
     		workoutContainer.getChildren().addAll(logWorkoutLabel, doneButton);
     		
+    		// Container for workout goals 
     		HBox workoutGoalsContainer = new HBox();
     		Label logGoalsLabel = new Label("Log your workout goals");
     		HBox.setMargin(logGoalsLabel, new Insets(10,10,10,10));
