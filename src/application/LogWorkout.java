@@ -10,7 +10,7 @@ package application;
 public class LogWorkout extends WorkoutAppController{
 	
 	// will get the workoutstats from the controller 
-	public void getWorkoutStats() {
-		
+	public String getWorkoutStats() {
+		return null;
 	}
 }
