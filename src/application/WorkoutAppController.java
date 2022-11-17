@@ -39,6 +39,8 @@ public class WorkoutAppController {
     
     
     
+    
+    // Grace
     // Take user input and add to ChoiceBox
     void addNewUser(Scene mainScene) {
     	applicationStage.setScene(mainScene);
@@ -70,9 +72,10 @@ public class WorkoutAppController {
 	   
 	   workoutTypeContainer.getChildren().addAll(workoutTypeLabel, workoutTypeChoiceBox);
 	   
-	   workoutStatsContainer.getChildren().addAll(workoutTypeContainer);
+	   
 	  
-	   Button submitStats = new Button();
+	   Button submitStats = new Button("Done");
+	   workoutStatsContainer.getChildren().addAll(workoutTypeContainer, submitStats);
 	   submitStats.setOnAction(doneEvent ->  applicationStage.setScene(returnUserScene));
 	  
 	   Scene workoutStatsScene = new Scene(workoutStatsContainer);  
@@ -80,8 +83,32 @@ public class WorkoutAppController {
 	  ;
    }
    
-   void userGoalLog(Scene logWorkoutScene) {
+   void userGoalLog(ActionEvent event, Scene returnUserScene) {
 	   
+	   applicationStage.setTitle("Log" + " " + chooseUserChoiceBox.getValue() + " " + "Goals");
+	   
+	   // main container
+	   VBox workoutGoalsContainer = new VBox();
+	  
+	   // User can enter goals for target body weight, duration, personal weight record for upper and lower body
+	   
+	   HBox durationGoalContainer = new HBox();
+	   Label durationGoalLabel = new Label("Workout Duration Goal");
+	   HBox.setMargin(durationGoalLabel, new Insets(10,10,10,10));
+	   TextField durationTextfield = new TextField();
+	   Label durationMinLabel = new Label("minutes");
+	   HBox.setMargin(durationMinLabel, new Insets(10,10,10,10));
+	  
+	   durationGoalContainer.getChildren().addAll(durationGoalLabel, durationTextfield, durationMinLabel);
+	   
+	  
+	  
+	   Button submitGoals = new Button("Done");
+	   workoutGoalsContainer.getChildren().addAll(durationGoalContainer, submitGoals);
+	   submitGoals.setOnAction(doneEvent ->  applicationStage.setScene(returnUserScene));
+	  
+	   Scene workoutGoalScene = new Scene(workoutGoalsContainer);  
+	   applicationStage.setScene(workoutGoalScene);
    }
     
    
@@ -146,6 +173,7 @@ public class WorkoutAppController {
     		Button doneButton = new Button("Enter Here");
     		HBox.setMargin(doneButton, new Insets(10,10,10,10));
     		doneButton.setOnAction(doneEvent -> userWorkoutLog(event, returnUserScene));
+    		
     		workoutContainer.getChildren().addAll(logWorkoutLabel, doneButton);
     		
     		HBox workoutGoalsContainer = new HBox();
@@ -153,7 +181,7 @@ public class WorkoutAppController {
     		HBox.setMargin(logGoalsLabel, new Insets(10,10,10,10));
     		Button goalsButton = new Button("Enter Goals Here");
     		HBox.setMargin(goalsButton, new Insets(10,10,10,10));
-    		goalsButton.setOnAction(goalsEvent -> userGoalLog(mainScene));
+    		goalsButton.setOnAction(goalsEvent -> userGoalLog(event, returnUserScene));
     		
     		workoutGoalsContainer.getChildren().addAll(logGoalsLabel, goalsButton);
     		returnUserContainer.getChildren().addAll(returnUserLabel, activityLabel, workoutContainer, workoutGoalsContainer);
