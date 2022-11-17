@@ -1,5 +1,12 @@
 package application;
 
+
+/**
+ * This class 
+ * 
+ * @author CS219-user
+ *
+ */
 public class LogWorkout extends WorkoutAppController{
 	
 	

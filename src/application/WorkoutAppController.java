@@ -33,7 +33,7 @@ public class WorkoutAppController {
     			"Goal setting is the secret to a compelling future."}; 
     	int rndQuote = new Random().nextInt(quoteArray.length);
 		return quoteArray[rndQuote];
-    	
+    	// this function could be placed in a new class (inheritance call)
     }
     
     
@@ -53,7 +53,6 @@ public class WorkoutAppController {
    void userWorkoutLog(Scene mainScene) {
 	   applicationStage.setScene(mainScene);
 	   
-	  
 	   applicationStage.setTitle("Log" + chooseUserChoiceBox.getValue() + "Workout Stats");
 	   
 	   // main container
@@ -78,6 +77,13 @@ public class WorkoutAppController {
    }
     
    
+   
+   /** 
+    * This method generates a new scene based on the users interaction with the ChoiceBox. Depending on the choice, the user can 
+    * generate a new user that will be added to the ChoiceBox for later entry or sign in as a previous user. 
+    *  
+    * @param event 
+    */
    
     @FXML
     void chooseUser(ActionEvent event) {
