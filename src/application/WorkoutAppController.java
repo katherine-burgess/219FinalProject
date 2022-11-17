@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Random;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -23,6 +25,19 @@ public class WorkoutAppController {
     private ChoiceBox<String> chooseUserChoiceBox;
 
     
+    // Get a randomly generated quote and returns the string at the random index
+    // https://stackoverflow.com/questions/8065532/how-to-randomly-pick-an-element-from-an-array
+    public static String getRandomQuote() {
+    	String[] quoteArray = new String[] {"Progress, not perfection." , 
+    			"It's our choices that show what we truly are, far more than our abilities.", 
+    			"Goal setting is the secret to a compelling future."}; 
+    	int rndQuote = new Random().nextInt(quoteArray.length);
+		return quoteArray[rndQuote];
+    	
+    }
+    
+    
+    
     // Take user input and add to ChoiceBox
     void addNewUser(Scene mainScene) {
     	applicationStage.setScene(mainScene);
@@ -32,12 +47,13 @@ public class WorkoutAppController {
     }
    
     
+ 
    // currently returns to the main interface when it should go back to the most recent scene
    // Returning user main interface 
    void userWorkoutLog(Scene mainScene) {
 	   applicationStage.setScene(mainScene);
 	   
-	   
+	  
 	   applicationStage.setTitle("Log" + chooseUserChoiceBox.getValue() + "Workout Stats");
 	   
 	   // main container
@@ -61,9 +77,14 @@ public class WorkoutAppController {
 	   
    }
     
+   
+   
     @FXML
     void chooseUser(ActionEvent event) {
     	Scene mainScene = applicationStage.getScene();   
+    	
+    	String inspirationQuote = getRandomQuote();
+    	inspirationQuoteLabel.setText(inspirationQuote);
     	
     	// Get the input from the user 
     	String user = chooseUserChoiceBox.getValue();
