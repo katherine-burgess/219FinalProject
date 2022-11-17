@@ -5,6 +5,7 @@ import java.util.Random;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -50,26 +51,33 @@ public class WorkoutAppController {
  
    // currently returns to the main interface when it should go back to the most recent scene
    // Returning user main interface 
-   void userWorkoutLog(Scene mainScene) {
-	   applicationStage.setScene(mainScene);
+   void userWorkoutLog(ActionEvent event, Scene returnUserScene) {
 	   
-	   applicationStage.setTitle("Log" + chooseUserChoiceBox.getValue() + "Workout Stats");
+	   
+	   applicationStage.setTitle("Log" + " " + chooseUserChoiceBox.getValue() + " " + "Workout Stats");
 	   
 	   // main container
 	   VBox workoutStatsContainer = new VBox();
 	  
-	   
 	   HBox workoutTypeContainer = new HBox();
 	   Label workoutTypeLabel = new Label("Workout Type: ");
-	   ChoiceBox<String> workoutTypeChoiceBox = new ChoiceBox<String>();
+	   HBox.setMargin(workoutTypeLabel, new Insets(10,10,10,10));
+	   
+	   ChoiceBox<String> workoutTypeChoiceBox = new ChoiceBox<String>(); // add padding to the ChoiceBox
+	   
 	   workoutTypeChoiceBox.getItems().add("Cardio");
 	   workoutTypeChoiceBox.getItems().add("Weight Training");
 	   
 	   workoutTypeContainer.getChildren().addAll(workoutTypeLabel, workoutTypeChoiceBox);
 	   
 	   workoutStatsContainer.getChildren().addAll(workoutTypeContainer);
-	   
-	   
+	  
+	   Button submitStats = new Button();
+	   submitStats.setOnAction(doneEvent ->  applicationStage.setScene(returnUserScene));
+	  
+	   Scene workoutStatsScene = new Scene(workoutStatsContainer);  
+	   applicationStage.setScene(workoutStatsScene);
+	  ;
    }
    
    void userGoalLog(Scene logWorkoutScene) {
@@ -104,7 +112,7 @@ public class WorkoutAppController {
     		TextField newUserTextfield = new TextField();
     		
     		
-    		Button doneButton = new Button("Done");
+    		Button doneButton = new Button("Enter Here");
     		doneButton.setOnAction(doneEvent -> addNewUser(mainScene));
     		
     		
@@ -113,6 +121,9 @@ public class WorkoutAppController {
     		applicationStage.setScene(addUserScene); // places the new scene on the stage
     		
     	} else {
+    		
+//    		Group root = new Group();
+//    		Scene workoutScene = new Scene(root, 400, 400);
     		// Any returning users already in the ChoiceBox
     		//Scene logWorkoutScene = new applicationStage.getScene();
     		VBox returnUserContainer = new VBox();
@@ -122,6 +133,7 @@ public class WorkoutAppController {
     		// Title changes based on the user that is entered
     		applicationStage.setTitle(user);
     		
+    		Scene returnUserScene = new Scene(returnUserContainer);    		
     		
     		Label returnUserLabel = new Label("Welcome " + user + " !"); // this will change will change based on what user is chosen
     		VBox.setMargin(returnUserLabel, new Insets(10,10,10,10));
@@ -133,7 +145,7 @@ public class WorkoutAppController {
     		HBox.setMargin(logWorkoutLabel, new Insets(10,10,10,10));
     		Button doneButton = new Button("Enter Here");
     		HBox.setMargin(doneButton, new Insets(10,10,10,10));
-    		doneButton.setOnAction(doneEvent -> userWorkoutLog(mainScene));
+    		doneButton.setOnAction(doneEvent -> userWorkoutLog(event, returnUserScene));
     		workoutContainer.getChildren().addAll(logWorkoutLabel, doneButton);
     		
     		HBox workoutGoalsContainer = new HBox();
@@ -144,10 +156,8 @@ public class WorkoutAppController {
     		goalsButton.setOnAction(goalsEvent -> userGoalLog(mainScene));
     		
     		workoutGoalsContainer.getChildren().addAll(logGoalsLabel, goalsButton);
-    		
-    		
     		returnUserContainer.getChildren().addAll(returnUserLabel, activityLabel, workoutContainer, workoutGoalsContainer);
-    		Scene returnUserScene = new Scene(returnUserContainer);
+    		
     		applicationStage.setScene(returnUserScene);
     	}
     	

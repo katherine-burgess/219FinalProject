@@ -1,5 +1,6 @@
 package application;
 
-public class LogGoals {
+// 
+public class LogGoals extends WorkoutAppController{
 
 }
