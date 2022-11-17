@@ -26,6 +26,8 @@ public class WorkoutAppController {
     private ChoiceBox<String> chooseUserChoiceBox;
 
     
+    
+    
     // Get a randomly generated quote and returns the string at the random index
     // https://stackoverflow.com/questions/8065532/how-to-randomly-pick-an-element-from-an-array
     public static String getRandomQuote() {
@@ -50,9 +52,14 @@ public class WorkoutAppController {
     }
    
     
+    
  
-   // currently returns to the main interface when it should go back to the most recent scene
-   // Returning user main interface 
+   /**
+    * This method changes the scene for the user to input their workout stats
+    * 
+    * @param event
+    * @param returnUserScene
+    */
    void userWorkoutLog(ActionEvent event, Scene returnUserScene) {
 	   
 	   
@@ -61,21 +68,50 @@ public class WorkoutAppController {
 	   // main container
 	   VBox workoutStatsContainer = new VBox();
 	  
+	   // Container for choosing a workout type
 	   HBox workoutTypeContainer = new HBox();
-	   Label workoutTypeLabel = new Label("Workout Type: ");
+	   Label workoutTypeLabel = new Label("Workout Type : ");
 	   HBox.setMargin(workoutTypeLabel, new Insets(10,10,10,10));
-	   
 	   ChoiceBox<String> workoutTypeChoiceBox = new ChoiceBox<String>(); // add padding to the ChoiceBox
-	   
+	   HBox.setMargin(workoutTypeChoiceBox, new Insets(10,10,10,10));
 	   workoutTypeChoiceBox.getItems().add("Cardio");
 	   workoutTypeChoiceBox.getItems().add("Weight Training");
-	   
 	   workoutTypeContainer.getChildren().addAll(workoutTypeLabel, workoutTypeChoiceBox);
 	   
+	   // Container for duration of workout 
+	   HBox durationContainer = new HBox();
+	   Label durationLabel = new Label("Duration : ");
+	   HBox.setMargin(durationLabel, new Insets(10,10,10,10));
+	   TextField durationTextfield = new TextField();
+	   HBox.setMargin(durationTextfield, new Insets(10,10,10,10));
+	   Label durationMinLabel = new Label("minutes");
+	   HBox.setMargin(durationMinLabel, new Insets(10,10,10,10));
+	   durationContainer.getChildren().addAll(durationLabel, durationTextfield, durationMinLabel);
 	   
-	  
+	   // Container for workout intensity
+	   HBox workoutIntensityContainer = new HBox();
+	   Label workoutIntensityLabel = new Label("Intensity : ");
+	   HBox.setMargin(workoutIntensityLabel, new Insets(10,10,10,10));
+	   ChoiceBox<String> workoutIntensityChoiceBox = new ChoiceBox<String>(); // add padding to the ChoiceBox
+	   HBox.setMargin(workoutIntensityChoiceBox, new Insets(10,10,10,10));
+	   workoutIntensityChoiceBox.getItems().add("Easy");
+	   workoutIntensityChoiceBox.getItems().add("Medium");
+	   workoutIntensityChoiceBox.getItems().add("Hard");
+	   workoutIntensityContainer.getChildren().addAll(workoutIntensityLabel, workoutIntensityChoiceBox);
+	   
+	   // Container for calories burned
+	   HBox caloriesContainer = new HBox();
+	   Label caloriesBurnedLabel = new Label("Calories Burned :");
+	   HBox.setMargin(caloriesBurnedLabel, new Insets(10,10,10,10));
+	   TextField caloriesTextfield = new TextField();
+	   HBox.setMargin(caloriesTextfield, new Insets(10,10,10,10));
+	   Label caloriesLabel = new Label("calories");
+	   HBox.setMargin(caloriesLabel, new Insets(10,10,10,10));
+	   caloriesContainer.getChildren().addAll(caloriesBurnedLabel, caloriesTextfield, caloriesLabel);
+	   
 	   Button submitStats = new Button("Done");
-	   workoutStatsContainer.getChildren().addAll(workoutTypeContainer, submitStats);
+	   VBox.setMargin(submitStats, new Insets(10,10,10,10));
+	   workoutStatsContainer.getChildren().addAll(workoutTypeContainer, durationContainer, workoutIntensityContainer, caloriesContainer, submitStats);
 	   submitStats.setOnAction(doneEvent ->  applicationStage.setScene(returnUserScene));
 	  
 	   Scene workoutStatsScene = new Scene(workoutStatsContainer);  
@@ -84,7 +120,7 @@ public class WorkoutAppController {
    }
    
    /**
-    * 
+    * This method generates the scene for goal input 
     * 
     * @param event
     * @param returnUserScene
@@ -106,7 +142,6 @@ public class WorkoutAppController {
 	   HBox.setMargin(durationTextfield, new Insets(10,10,10,10));
 	   Label durationMinLabel = new Label("minutes");
 	   HBox.setMargin(durationMinLabel, new Insets(10,10,10,10));
-	  
 	   durationGoalContainer.getChildren().addAll(durationGoalLabel, durationTextfield, durationMinLabel);
 	   
 	   // Container for entering target body weight 
