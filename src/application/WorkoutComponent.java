@@ -23,11 +23,6 @@ public class WorkoutComponent {
 		caloriesBurned = calories;
 	}
 	
-	public void getWorkoutType() {
-		
-	}
-	
-	
 	public void setWorkout() {
 	}
 	
