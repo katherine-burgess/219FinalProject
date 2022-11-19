@@ -186,9 +186,7 @@ public class WorkoutAppController {
 	   applicationStage.setScene(workoutGoalScene);
    }
     
-   public String getWorkoutGoals() {
-	   return null;
-   }
+  
    
    
    /** 
