@@ -25,7 +25,7 @@ public class WorkoutAppController {
     @FXML
     private ChoiceBox<String> chooseUserChoiceBox;
 
-    
+    Label newUserErrorLabel = new Label();
     
     
     // Get a randomly generated quote and returns the string at the random index
@@ -44,8 +44,27 @@ public class WorkoutAppController {
     
     // Grace
     // Take user input and add to ChoiceBox
-    void setAddNewUser(Scene mainScene) {
-    	applicationStage.setScene(mainScene);
+    void setAddNewUser(Scene mainScene, TextField newUserTextfield) {
+    	newUserErrorLabel.setText(" ");
+    	
+    	// creates a new user object	
+    	User newUser = new User(" ");
+    	
+    	// validate that the user has entered a name 
+    	String errorMessage = newUser.setName(newUserTextfield.getText());
+    	
+    	// Check if error message (if so show an error message to the user)
+    	if (errorMessage.equals(" ")) {
+    		applicationStage.setScene(mainScene);
+    	} else {
+    		newUserErrorLabel.setText(errorMessage);
+    	}
+    		
+    		
+    	
+    	
+    	
+    	
     	
     	// Adding the new user to the ChoiceBox	
     	// chooseUserChoiceBox.getItems().add("placeholder");       // https://jenkov.com/tutorials/javafx/choicebox.html
@@ -210,16 +229,27 @@ public class WorkoutAppController {
     	if (user.equals("Add a User") ) {
     		applicationStage.setTitle("Get Fit");
     		
-    		HBox newUserContainer = new HBox();
+    		VBox newUserContainer = new VBox();
+    		
+    		HBox newUserTitle = new HBox();
     		Label newUserLabel = new Label("Add a New User");
+    		newUserTitle.getChildren().add(newUserLabel);
+    		
+    		HBox userNameContainer = new HBox();
+    		Label userNameLabel = new Label("Enter New Username:");
     		TextField newUserTextfield = new TextField();
+    		userNameContainer.getChildren().addAll(userNameLabel, newUserTextfield);
+    		
     		
     		
     		Button doneButton = new Button("Enter Here");
-    		doneButton.setOnAction(doneEvent -> setAddNewUser(mainScene));
+    		doneButton.setOnAction(doneEvent -> setAddNewUser(mainScene, newUserTextfield));
     		
     		
-    		newUserContainer.getChildren().addAll(newUserLabel, newUserTextfield, doneButton);
+    		
+    		newUserContainer.getChildren().addAll(newUserTitle, userNameContainer, doneButton);
+    		
+    		newUserContainer.getChildren().add(newUserErrorLabel);
     		Scene addUserScene = new Scene(newUserContainer);
     		applicationStage.setScene(addUserScene); // places the new scene on the stage
     		
