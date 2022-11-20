@@ -29,7 +29,6 @@ public class WorkoutComponent {
 		
 	}
 	
-
 	public void setDuration(String dur) {
 		try {
 			duration = Long.parseLong(dur);

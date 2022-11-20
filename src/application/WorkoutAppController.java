@@ -225,7 +225,6 @@ public class WorkoutAppController {
     		userNameContainer.getChildren().addAll(userNameLabel, newUserTextfield);
     		
     		
-    		
     		Button doneButton = new Button("Enter Here");
     		doneButton.setOnAction(doneEvent -> setAddNewUser(mainScene, newUserTextfield));
     		
