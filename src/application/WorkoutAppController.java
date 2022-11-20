@@ -53,35 +53,22 @@ public class WorkoutAppController {
     	
     	// Check if error message (if so show an error message to the user)
     	if (errorMessage.equals(" ")) {
-    		chooseUserChoiceBox.getItems().add(newUser.getName());
+    		chooseUserChoiceBox.getItems().add(newUser.getName());     // https://jenkov.com/tutorials/javafx/choicebox.html
     		applicationStage.setScene(mainScene);
     	} else {
     		newUserErrorLabel.setText(errorMessage);
     	}
     		
-    		
-    	
-    	
-    	
-    	
-    	
-    	// Adding the new user to the ChoiceBox	
-    	// chooseUserChoiceBox.getItems().add("placeholder");       // https://jenkov.com/tutorials/javafx/choicebox.html
     }
    
-    public String getAddNewUser() {
-    	return null;
-    }
-    	
-    
- 
+
    /**
     * This method changes the scene for the user to input their workout stats.
     * 
     * @param event
     * @param returnUserScene
     */
-   void setUserWorkoutLog(ActionEvent event, Scene returnUserScene) {
+   void getWorkoutLog(ActionEvent event, Scene returnUserScene) {
 	   
 	   
 	   applicationStage.setTitle("Log" + " " + chooseUserChoiceBox.getValue() + " " + "Workout Stats");
@@ -133,6 +120,8 @@ public class WorkoutAppController {
 	   Button submitStats = new Button("Done");
 	   VBox.setMargin(submitStats, new Insets(10,10,10,10));
 	   workoutStatsContainer.getChildren().addAll(workoutTypeContainer, durationContainer, workoutIntensityContainer, caloriesContainer, submitStats);
+	   
+	   // when user is done inputting stats, return to user's home page
 	   submitStats.setOnAction(doneEvent ->  applicationStage.setScene(returnUserScene));
 	  
 	   Scene workoutStatsScene = new Scene(workoutStatsContainer);  
@@ -141,17 +130,13 @@ public class WorkoutAppController {
    }
    
    
-   public String getWorkoutStats() {
-	   return null;
-   }
-   
    /**
     * This method generates the scene for goal input 
     * 
     * @param event
     * @param returnUserScene
     */
-   void setUserGoalLog(ActionEvent event, Scene returnUserScene) {
+   void getGoalLog(ActionEvent event, Scene returnUserScene) {
 	   
 	   applicationStage.setTitle("Log" + " " + chooseUserChoiceBox.getValue() + " " + "Goals");
 	   
@@ -256,14 +241,11 @@ public class WorkoutAppController {
     		
     		// returning the user welcome page
     		VBox returnUserContainer = new VBox();
-    		
-    		returnUserContainer.setStyle("-fx-background-color: gainsboro;");
-    		
+
     		// Title changes based on the user that is entered
     		applicationStage.setTitle(user);
     		
     		Scene returnUserScene = new Scene(returnUserContainer);    		
-    		
     		
     		Label returnUserLabel = new Label("Welcome " + user + " !"); // this will change will change based on what user is chosen
     		VBox.setMargin(returnUserLabel, new Insets(10,10,10,10));
@@ -276,7 +258,7 @@ public class WorkoutAppController {
     		HBox.setMargin(logWorkoutLabel, new Insets(10,10,10,10));
     		Button doneButton = new Button("Enter Here");
     		HBox.setMargin(doneButton, new Insets(10,10,10,10));
-    		doneButton.setOnAction(doneEvent -> setUserWorkoutLog(event, returnUserScene));
+    		doneButton.setOnAction(doneEvent -> getWorkoutLog(event, returnUserScene));
     		
     		workoutContainer.getChildren().addAll(logWorkoutLabel, doneButton);
     		
@@ -286,7 +268,7 @@ public class WorkoutAppController {
     		HBox.setMargin(logGoalsLabel, new Insets(10,10,10,10));
     		Button goalsButton = new Button("Enter Goals Here");
     		HBox.setMargin(goalsButton, new Insets(10,10,10,10));
-    		goalsButton.setOnAction(goalsEvent -> setUserGoalLog(event, returnUserScene));
+    		goalsButton.setOnAction(goalsEvent -> getGoalLog(event, returnUserScene));
     		
     		workoutGoalsContainer.getChildren().addAll(logGoalsLabel, goalsButton);
     		returnUserContainer.getChildren().addAll(returnUserLabel, activityLabel, workoutContainer, workoutGoalsContainer);

@@ -45,7 +45,14 @@ public class User {
 	public String getName() {
 		return name;
 	}
+	
 	// This method will call the WorkoutComponent() to get the stats from the user
+	public void logWorkout() {
+		
+	}
 	
 	// This method will call the GoalComponent() to get the goals 
+	public void logGoals() {
+		
+	}
 }
