@@ -42,8 +42,6 @@ public class WorkoutAppController {
     
     
     
-    // Grace
-    // Take user input and add to ChoiceBox
     void setAddNewUser(Scene mainScene, TextField newUserTextfield) {
     	newUserErrorLabel.setText(" ");
     	
@@ -55,6 +53,7 @@ public class WorkoutAppController {
     	
     	// Check if error message (if so show an error message to the user)
     	if (errorMessage.equals(" ")) {
+    		chooseUserChoiceBox.getItems().add(newUser.getName());
     		applicationStage.setScene(mainScene);
     	} else {
     		newUserErrorLabel.setText(errorMessage);
